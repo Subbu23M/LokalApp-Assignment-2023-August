@@ -1,0 +1,19 @@
+body {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.discountBtn {
+    position: absolute;
+    top: 10px;
+    left: 15px;
+}
+
+svg {
+    margin-bottom: 5px;
+}
+
+a:hover {
+    text-decoration: none;
+}
