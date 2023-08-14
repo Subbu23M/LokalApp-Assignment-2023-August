@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom"
-import { DisplayData } from "./Components/DisplayData"
+import { DisplayData } from "./pages/DisplayData"
+import { MobileUnique } from "./pages/MobileUnique"
 import './Styling/Main.scss'
-import { MobileUnique } from "./Components/MobileUnique"
 
 export const App = () => {
   return (

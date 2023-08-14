@@ -1,7 +1,7 @@
-import axios from "axios"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import {FaStar} from 'react-icons/fa6'
+import axios from "axios"
 
 export const MobileUnique = () => {
     // Logic to collect unique id for each product
@@ -10,6 +10,7 @@ export const MobileUnique = () => {
     } = useParams();
 
     const [fetchData, setFetchData] = useState([])
+    const [isLoading, setIsLoading] = useState(true);
 
     const baseUrl = `https://dummyjson.com/products/${id}`
 
@@ -19,24 +20,33 @@ export const MobileUnique = () => {
             .get(baseUrl)
             .then((response) => {
                 setFetchData(response?.data)
+                setIsLoading(!isLoading)
             })
             .catch((error) => {
                 alert(error.message)
             })
     }, [baseUrl])
 
-    const{thumbnail,title,brand,price,rating,discountPercentage,description,category,stock} = fetchData
-    
-    return (
+    const {
+        thumbnail,
+        title,
+        brand,
+        price,
+        rating,
+        discountPercentage,
+        description,
+        category,
+        stock
+    } = fetchData
+
+    const finalResult = (
         <section>
             <div className="container">
                 <div className="row">
                     <div className="col-lg-12 my-2">
-                        <img 
-                            src={thumbnail} 
-                            alt={title} 
-                            className="img-fluid border border-3 rounded"
-                        />
+                        {
+                            thumbnail && <img src={thumbnail} alt={title} className="img-fluid border border-3 rounded"/>
+                        }
                         <h1 className="font-weight-bold mt-5">
                             {title}
                         </h1>
@@ -77,5 +87,12 @@ export const MobileUnique = () => {
                 </div>
             </div>
         </section>
+    )
+    return (
+        <>
+        {
+            isLoading ? <h2>Loading....</h2> : finalResult
+        }
+        </>
     )
 }
